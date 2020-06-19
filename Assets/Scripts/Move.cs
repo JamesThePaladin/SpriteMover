@@ -1,12 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    
-    private Transform tf; // A variable to hold our Transform component
+    public GameObject thisShip;
+    public Transform tf; // A variable to hold our Transform component
+    public float speed; // variable for vector magnitude
+    public float xDelta; // variable for x-axis
+    public float yDelta; // variable for y-axis
+    private Boolean MoveEnabled = true; //boolean for disabling/enabling movement
+
     void Start()
     {
         // Get the Transform Component
@@ -14,8 +20,102 @@ public class Move : MonoBehaviour
     }
     void Update()
     {
-        // Move up every frame draw by adding 1 to the y of our position
-        tf.position = tf.position + (Vector3.up * 0.5f); // Vector3.up is a preset Vector of (0,1,0) multiply by half to get a viewable speed
-        // There is also a Vector3.right (1,0,0) and Vector3.forward (0,0,1)
+        //toggle "pause"
+        if (Input.GetKeyDown("p"))
+        {
+            if (MoveEnabled)
+            {
+                MoveEnabled = false;
+            }
+
+            else 
+            {
+                MoveEnabled = true;
+            }
+        }
+
+        if (MoveEnabled)
+        {   //if the shift key is pressed down, move 1 unit
+            if (Input.GetKey("left shift") | Input.GetKey("right shift")) 
+            {
+                if (Input.GetKeyDown("w") | Input.GetKeyDown("up"))
+                {
+                    Vector3 myVector = new Vector3(0, 1, 0); // create vector to add
+                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
+                    tf.position += (myVector * speed); // change position and add magnitude
+                }
+
+                if (Input.GetKeyDown("a") | Input.GetKeyDown("left"))
+                {
+                    Vector3 myVector = new Vector3(-1, 0, 0); // create vector to add
+                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
+                    tf.position += (myVector * speed); // change position and add magnitude
+                }
+
+                if (Input.GetKeyDown("s") | Input.GetKeyDown("down"))
+                {
+                    Vector3 myVector = new Vector3(0, -1, 0); // create vector to add
+                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
+                    tf.position += (myVector * speed); // change position and add magnitude
+                }
+
+                if (Input.GetKeyDown("d") | Input.GetKeyDown("right"))
+                {
+                    Vector3 myVector = new Vector3(1, 0, 0); // create vector to add
+                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
+                    tf.position += (myVector * speed); // change position and add magnitude
+                }
+            }
+
+            //otherwise move as normal
+            else
+            {
+                if (Input.GetKey("w") | Input.GetKey("up"))
+                {
+                    Vector3 myVector = new Vector3(0, speed, 0); // create vector to add
+                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
+                    tf.position += (myVector * speed); // change position and add magnitude
+                }
+
+                if (Input.GetKey("a") | Input.GetKey("left"))
+                {
+                    Vector3 myVector = new Vector3(speed, 0, 0); // create vector to add
+                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
+                    tf.position -= (myVector * speed); // change position and add magnitude
+                }
+
+                if (Input.GetKey("s") | Input.GetKey("down"))
+                {
+                    Vector3 myVector = new Vector3(0, speed, 0); // create vector to add
+                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
+                    tf.position -= (myVector * speed); // change position and add magnitude
+                }
+
+                if (Input.GetKey("d") | Input.GetKey("right"))
+                {
+                    Vector3 myVector = new Vector3(speed, 0, 0); // create vector to add
+                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
+                    tf.position += (myVector * speed); // change position and add magnitude
+                }
+            }
+        }
+
+        //Return starShip to (0, 0, 0)
+        if (Input.GetKeyDown("space")) 
+        {
+            tf.position = new Vector3(0, 0, 0);
+        }
+
+        //exit application with escape key
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            Application.Quit();
+        }
+
+        //make thisShip inactive
+        if (Input.GetKeyDown("q")) 
+        {
+            thisShip.SetActive(false);
+        }
     }
 }
