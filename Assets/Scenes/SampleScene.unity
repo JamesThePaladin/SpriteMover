@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 988325494}
   - component: {fileID: 988325497}
   m_Layer: 0
-  m_Name: starShip
+  m_Name: alpha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f4ce5baeb41d524aa8ede83f0c0da50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisShip: {fileID: 988325493}
+  thisAlpha: {fileID: 0}
   tf: {fileID: 988325496}
   speed: 1
   xDelta: 0

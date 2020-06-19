@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    public GameObject thisShip;
+    public GameObject thisAlpha;
     public Transform tf; // A variable to hold our Transform component
     public float speed; // variable for vector magnitude
     public float xDelta; // variable for x-axis
@@ -100,7 +100,7 @@ public class Move : MonoBehaviour
             }
         }
 
-        //Return starShip to (0, 0, 0)
+        //Return alpha to (0, 0, 0)
         if (Input.GetKeyDown("space")) 
         {
             tf.position = new Vector3(0, 0, 0);
@@ -115,7 +115,7 @@ public class Move : MonoBehaviour
         //make thisShip inactive
         if (Input.GetKeyDown("q")) 
         {
-            thisShip.SetActive(false);
+            thisAlpha.SetActive(false);
         }
     }
 }
