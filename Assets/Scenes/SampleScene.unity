@@ -312,8 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f4ce5baeb41d524aa8ede83f0c0da50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAlpha: {fileID: 0}
+  thisAlpha: {fileID: 988325493}
   tf: {fileID: 988325496}
   speed: 1
-  xDelta: 0
-  yDelta: 0
+  xDelta: 1
+  yDelta: 1

@@ -20,7 +20,7 @@ public class Move : MonoBehaviour
     }
     void Update()
     {
-        //toggle "pause"
+        //toggle input handlers
         if (Input.GetKeyDown("p"))
         {
             if (MoveEnabled)
@@ -72,28 +72,28 @@ public class Move : MonoBehaviour
             {
                 if (Input.GetKey("w") | Input.GetKey("up"))
                 {
-                    Vector3 myVector = new Vector3(0, speed, 0); // create vector to add
+                    Vector3 myVector = new Vector3(0, yDelta, 0); // create vector to add
                     myVector = myVector.normalized; // You could also call the function myVector.Normalize();
                     tf.position += (myVector * speed); // change position and add magnitude
                 }
 
                 if (Input.GetKey("a") | Input.GetKey("left"))
                 {
-                    Vector3 myVector = new Vector3(speed, 0, 0); // create vector to add
+                    Vector3 myVector = new Vector3(xDelta, 0, 0); // create vector to add
                     myVector = myVector.normalized; // You could also call the function myVector.Normalize();
                     tf.position -= (myVector * speed); // change position and add magnitude
                 }
 
                 if (Input.GetKey("s") | Input.GetKey("down"))
                 {
-                    Vector3 myVector = new Vector3(0, speed, 0); // create vector to add
+                    Vector3 myVector = new Vector3(0, yDelta, 0); // create vector to add
                     myVector = myVector.normalized; // You could also call the function myVector.Normalize();
                     tf.position -= (myVector * speed); // change position and add magnitude
                 }
 
                 if (Input.GetKey("d") | Input.GetKey("right"))
                 {
-                    Vector3 myVector = new Vector3(speed, 0, 0); // create vector to add
+                    Vector3 myVector = new Vector3(xDelta, 0, 0); // create vector to add
                     myVector = myVector.normalized; // You could also call the function myVector.Normalize();
                     tf.position += (myVector * speed); // change position and add magnitude
                 }
