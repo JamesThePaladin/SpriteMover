@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    public GameObject thisAlpha;
+    public GameObject thisAlpha; //variable to store GameObject
     public Transform tf; // A variable to hold our Transform component
     public float speed; // variable for vector magnitude
     public float xDelta; // variable for x-axis
@@ -98,12 +98,12 @@ public class Move : MonoBehaviour
                     tf.position += (myVector * speed); // change position and add magnitude
                 }
             }
-        }
 
-        //Return alpha to (0, 0, 0)
-        if (Input.GetKeyDown("space")) 
-        {
-            tf.position = new Vector3(0, 0, 0);
+            //Return alpha to (0, 0, 0)
+            if (Input.GetKeyDown("space"))
+            {
+                tf.position = new Vector3(0, 0, 0);
+            }
         }
 
         //exit application with escape key
