@@ -217,8 +217,9 @@ GameObject:
   - component: {fileID: 988325494}
   - component: {fileID: 988325497}
   - component: {fileID: 988325498}
+  - component: {fileID: 988325499}
   m_Layer: 0
-  m_Name: alpha
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +277,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 579d5f383e8f8e74ea784f7e63b473f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d4783976a9a7ba45a9de47d09ef31a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -294,13 +295,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988325493}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0012460575, w: 0.9999992}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.143}
 --- !u!114 &988325497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,9 +314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f4ce5baeb41d524aa8ede83f0c0da50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAlpha: {fileID: 988325493}
+  thisPlayer: {fileID: 0}
   tf: {fileID: 988325496}
-  speed: 0.1
+  speed: 0.08
+  turnSpeed: 0.5
   xDelta: 1
   yDelta: 1
 --- !u!50 &988325498
@@ -339,3 +341,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &988325499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988325493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c67572e4dbda8a418eac7d7f7fba2fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 0

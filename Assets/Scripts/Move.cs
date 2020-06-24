@@ -9,6 +9,7 @@ public class Move : MonoBehaviour
     public GameObject thisPlayer; //variable to store GameObject
     public Transform tf; // A variable to hold our Transform component
     public float speed; // variable for vector magnitude
+    public float turnSpeed; // separate variable for turn speed cause its driving me nuts
     public float xDelta; // variable for x-axis
     public float yDelta; // variable for y-axis
     private Boolean MoveEnabled = true; //boolean for disabling/enabling movement
@@ -73,26 +74,22 @@ public class Move : MonoBehaviour
             {
                 if (Input.GetKey("w") | Input.GetKey("up"))
                 {
-                    Vector3 myVector = new Vector3(0, yDelta, 0); // create vector to add
-                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
-                    tf.position += (myVector * speed); // change position and add magnitude
+                    tf.position = tf.position + (tf.TransformDirection(new Vector3(1, 0, 0)) * speed * Time.deltaTime); // move forward when w is pressed
                 }
 
                 if (Input.GetKey("a") | Input.GetKey("left"))
                 {
-                    tf.Rotate(0, 0, speed);
+                    tf.Rotate(0, 0, turnSpeed * Time.deltaTime); //rotate left when a is pressed
                 }
 
                 if (Input.GetKey("s") | Input.GetKey("down"))
                 {
-                    Vector3 myVector = new Vector3(0, yDelta, 0); // create vector to add
-                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
-                    tf.position -= (myVector * speed); // change position and add magnitude
+                    tf.position = tf.position + (tf.TransformDirection(new Vector3(-1, 0, 0)) * speed * Time.deltaTime); // move backward when s is pressed
                 }
 
                 if (Input.GetKey("d") | Input.GetKey("right"))
                 {
-                    tf.Rotate(0, 0, -speed);
+                    tf.Rotate(0, 0, -turnSpeed * Time.deltaTime); //rotate right when d is pressed
                 }
             }
 
