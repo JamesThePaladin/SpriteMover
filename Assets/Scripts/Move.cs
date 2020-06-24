@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    public GameObject thisAlpha; //variable to store GameObject
+    public GameObject thisPlayer; //variable to store GameObject
     public Transform tf; // A variable to hold our Transform component
     public float speed; // variable for vector magnitude
     public float xDelta; // variable for x-axis
@@ -38,6 +38,7 @@ public class Move : MonoBehaviour
         {   //if the shift key is pressed down, move 1 unit
             if (Input.GetKey("left shift") | Input.GetKey("right shift")) 
             {
+                
                 if (Input.GetKeyDown("w") | Input.GetKeyDown("up"))
                 {
                     Vector3 myVector = new Vector3(0, 1, 0); // create vector to add
@@ -79,9 +80,7 @@ public class Move : MonoBehaviour
 
                 if (Input.GetKey("a") | Input.GetKey("left"))
                 {
-                    Vector3 myVector = new Vector3(xDelta, 0, 0); // create vector to add
-                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
-                    tf.position -= (myVector * speed); // change position and add magnitude
+                    tf.Rotate(0, 0, speed);
                 }
 
                 if (Input.GetKey("s") | Input.GetKey("down"))
@@ -93,9 +92,7 @@ public class Move : MonoBehaviour
 
                 if (Input.GetKey("d") | Input.GetKey("right"))
                 {
-                    Vector3 myVector = new Vector3(xDelta, 0, 0); // create vector to add
-                    myVector = myVector.normalized; // You could also call the function myVector.Normalize();
-                    tf.position += (myVector * speed); // change position and add magnitude
+                    tf.Rotate(0, 0, -speed);
                 }
             }
 
@@ -115,7 +112,7 @@ public class Move : MonoBehaviour
         //make thisShip inactive
         if (Input.GetKeyDown("q")) 
         {
-            thisAlpha.SetActive(false);
+            thisPlayer.SetActive(false);
         }
     }
 }
