@@ -45,7 +45,7 @@ public class AsteroidScript : MonoBehaviour
             newPos.x = screenRight;
         }
 
-        //set player transform to new Pos
+        //set asteroid transform to new Pos
         transform.position = newPos;
     }
 }
