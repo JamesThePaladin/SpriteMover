@@ -74,27 +74,27 @@ public class Move : MonoBehaviour
             {
                 if (Input.GetKey("w") | Input.GetKey("up"))
                 {
-                    tf.position = tf.position + (tf.TransformDirection(new Vector3(1, 0, 0)) * speed * Time.deltaTime); // move forward when w is pressed
+                    tf.position = tf.position + (tf.TransformDirection(new Vector3(0, 1, 0)) * speed); // move forward when w is pressed
                 }
 
                 if (Input.GetKey("a") | Input.GetKey("left"))
                 {
-                    tf.Rotate(0, 0, turnSpeed * Time.deltaTime); //rotate left when a is pressed
+                    tf.Rotate(0, 0, turnSpeed); //rotate left when a is pressed
                 }
 
                 if (Input.GetKey("s") | Input.GetKey("down"))
                 {
-                    tf.position = tf.position + (tf.TransformDirection(new Vector3(-1, 0, 0)) * speed * Time.deltaTime); // move backward when s is pressed
+                    tf.position = tf.position + (tf.TransformDirection(new Vector3(0, -1, 0)) * speed); // move backward when s is pressed
                 }
 
                 if (Input.GetKey("d") | Input.GetKey("right"))
                 {
-                    tf.Rotate(0, 0, -turnSpeed * Time.deltaTime); //rotate right when d is pressed
+                    tf.Rotate(0, 0, -turnSpeed); //rotate right when d is pressed
                 }
             }
 
             //Return alpha to (0, 0, 0)
-            if (Input.GetKeyDown("space"))
+            if (Input.GetKeyDown("u"))
             {
                 tf.position = new Vector3(0, 0, 0);
             }
