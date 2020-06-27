@@ -13,11 +13,13 @@ public class PlayerControls : MonoBehaviour
     public float turnThrust; //to hold rotation speed
     private float thrustInput; //to set thrust inputs
     private float turnInput; //to set turn input
-    private Boolean MoveEnabled = true; //boolean for disabling/enabling movement
+    private PlayerControls controls; //to hold toggle
+
     public float screenTop; //hold screen boundary +y
     public float screenBottom; //hold screen boundary -y
     public float screenRight; //hold screen boundary x
     public float screenLeft; //hold screen boundary -x
+
     public float laserForce; //laser speed
     public GameObject laser; //var for laser
 
@@ -26,25 +28,19 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        controls = GetComponent<PlayerControls>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //toggle input handlers
-        if (Input.GetKeyDown("p"))
+        //toggle cotrols on/off
+        if (Input.GetKeyUp(KeyCode.P))
         {
-            if (MoveEnabled)
-            {
-                MoveEnabled = false;
-            }
-
-            else
-            {
-                MoveEnabled = true;
-            }
+            controls.enabled = !controls.enabled; //inverse component state
         }
 
+        // shift "dodge" function, it really just makes you teleport but I'll leave it for now
         if (Input.GetKey("left shift") | Input.GetKey("right shift"))
         {
             if (Input.GetKeyDown("w") | Input.GetKeyDown("up"))
