@@ -11,6 +11,9 @@ public class AsteroidScript : MonoBehaviour
     public float screenBottom; //hold screen boundary -y
     public float screenRight; //hold screen boundary x
     public float screenLeft; //hold screen boundary -x
+    public int asteroidSize; //for asteroid breaking 3 = large, 2 = medium, 1 = small
+    public GameObject asteroidMedium; //reference to medium size prefab
+    public GameObject asteroidSmall; //reference to small size prefab
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +22,8 @@ public class AsteroidScript : MonoBehaviour
         Vector2 thrust = new Vector2(Random.Range(-maxThrust, maxThrust), Random.Range(-maxThrust, maxThrust));
         float torque = Random.Range(-maxTorque, maxTorque);
 
-        rb.AddForce(thrust);
-        rb.AddTorque(torque);
+        rb.AddForce(thrust); //apply thrust to rigid body as a force
+        rb.AddTorque(torque); //apply torque to rigidbody to rotate
     }
 
     // Update is called once per frame
@@ -52,6 +55,30 @@ public class AsteroidScript : MonoBehaviour
     //asteroid collisions function
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(other.gameObject); //for now it just destroys the laser, but it does it
+        //check to see if collision is the laser
+        if (other.CompareTag("laser")) 
+        {
+            Destroy(other.gameObject); //destroy the laser
+            //check the size of the asteroid and spawn the next smaller size
+            if (asteroidSize == 3) 
+            {
+                //spawn 2 medium asteroids at the same spot of the large that was destroyed
+                Instantiate(asteroidMedium, transform.position, transform.rotation);
+                Instantiate(asteroidMedium, transform.position, transform.rotation); 
+            }
+            else if (asteroidSize == 2) //else if its medium
+            {
+                //spawn 2 medium asteroids at the same spot of the large that was destroyed
+                Instantiate(asteroidSmall, transform.position, transform.rotation);
+                Instantiate(asteroidSmall, transform.position, transform.rotation);
+            }
+            else if (asteroidSize == 1) //else if its small
+            {
+                //give player points
+            }
+            //destroy current asteroid
+            Destroy(gameObject);
+        }
+        
     }
 }
