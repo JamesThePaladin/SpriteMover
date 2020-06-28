@@ -13,7 +13,7 @@ public class PlayerControls : MonoBehaviour
     public float turnThrust; //to hold rotation speed
     private float thrustInput; //to set thrust inputs
     private float turnInput; //to set turn input
-    private PlayerControls controls; //to hold toggle
+    
 
     public float screenTop; //hold screen boundary +y
     public float screenBottom; //hold screen boundary -y
@@ -23,22 +23,20 @@ public class PlayerControls : MonoBehaviour
     public float laserForce; //laser speed
     public GameObject laser; //var for laser
 
+    public float terminalForce;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        controls = GetComponent<PlayerControls>(); 
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        //toggle cotrols on/off
-        if (Input.GetKeyUp(KeyCode.P))
-        {
-            controls.enabled = !controls.enabled; //inverse component state
-        }
+        
 
         // shift "dodge" function, it really just makes you teleport but I'll leave it for now
         if (Input.GetKey("left shift") | Input.GetKey("right shift"))
@@ -77,7 +75,9 @@ public class PlayerControls : MonoBehaviour
         {
             thrustInput = Input.GetAxis("Vertical");
             turnInput = Input.GetAxis("Horizontal");
+            //transform.Rotate(Vector3.forward * turnInput * Time.deltaTime * turnThrust); //better turn movement than adding force
         }
+
 
         //check for fire input and make bullets
         if (Input.GetButtonDown("Fire1")) 
@@ -135,5 +135,15 @@ public class PlayerControls : MonoBehaviour
         //apply thrust
         rb.AddRelativeForce(Vector2.up * thrustInput * thrust);
         rb.AddTorque(turnInput * turnThrust);
+    }
+
+    //Player collision function
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.relativeVelocity.magnitude);
+        if (collision.relativeVelocity.magnitude > terminalForce) 
+        {
+            Debug.Log("You died!");
+        }
     }
 }

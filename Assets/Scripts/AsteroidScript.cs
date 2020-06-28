@@ -48,4 +48,10 @@ public class AsteroidScript : MonoBehaviour
         //set asteroid transform to new Pos
         transform.position = newPos;
     }
+
+    //asteroid collisions function
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Destroy(other.gameObject); //for now it just destroys the laser, but it does it
+    }
 }

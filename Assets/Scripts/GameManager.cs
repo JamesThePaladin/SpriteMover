@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public int currentScore; //public player score for testing
 
+    private PlayerControls controls; //to hold toggle
+
 
     private void Awake()
     {
@@ -25,12 +27,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        controls = GetComponent<PlayerControls>();
     }
 
     // Update is called once per frame
     void Update()
     {
-    
+        //toggle cotrols on/off
+        if (Input.GetKeyUp("p"))
+        {
+            controls.enabled = !controls.enabled; //inverse component state
+            Debug.Log("controls have been toggled"); //
+        }
     }
 }
